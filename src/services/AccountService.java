@@ -1,9 +1,14 @@
 package services;
 
+import data.model.Account;
 import data.model.BankUserDetails;
+import dtos.request.DepositRequest;
+import dtos.request.WithdrawRequest;
+import dtos.response.AccountDTO;
+import exception.InsufficientFundsException;
 
 public interface AccountService {
-	BankUserDetails deposit(String accountNumber);
+	AccountDTO deposit(DepositRequest request);
 
-	BankUserDetails Withdraw(String accountNumber);
+	AccountDTO Withdraw(WithdrawRequest request) throws InsufficientFundsException;
 }
