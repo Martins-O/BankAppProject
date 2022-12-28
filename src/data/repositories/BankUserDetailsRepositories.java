@@ -9,5 +9,4 @@ public interface BankUserDetailsRepositories {
 	BankUserDetails save(BankUserDetails details);
 	void updateUser(BankUserDetails email);
 	BankUserDetails findByEmail(String email);
-
 }

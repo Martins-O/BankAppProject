@@ -2,10 +2,13 @@ package data.repositories;
 
 import data.model.BankUserDetails;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BankUserDetailsRepositoriesImpl implements BankUserDetailsRepositories{
+
+	private SecureRandom random = new SecureRandom();
 
 	private List<BankUserDetails> detailsDb = new ArrayList<>();
 	@Override
@@ -26,9 +29,13 @@ public class BankUserDetailsRepositoriesImpl implements BankUserDetailsRepositor
 
 	@Override
 	public BankUserDetails save(BankUserDetails details) {
-		if(details.getEmail() != null){
-			updateUser(details);
-		}else {
+//		if(details.getEmail() != null){
+//			updateUser(details);
+//		}else {
+//		detailsDb.add(details);
+//		}
+//		return details;
+		if(findByEmail(details.getEmail()) == null){
 			detailsDb.add(details);
 		}
 		return details;
@@ -37,9 +44,16 @@ public class BankUserDetailsRepositoriesImpl implements BankUserDetailsRepositor
 	@Override
 	public void updateUser(BankUserDetails details) {
 		BankUserDetails savedDetails = findByEmail(details.getEmail());
-		savedDetails.setFirstName(details.getFirstName());
-		savedDetails.setLastName(details.getLastName());
-		savedDetails.setAge(details.getAge());
+		if(savedDetails != null) {
+			savedDetails.setFirstName(details.getFirstName());
+		}
+		if(savedDetails != null) {
+			savedDetails.setLastName(details.getLastName());
+		}
+		if(savedDetails != null) {
+			savedDetails.setAge(details.getAge());
+		}
+//		save(savedDetails);
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package data.model;
 
+import data.repositories.BankUserDetailsRepositoriesImpl;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
